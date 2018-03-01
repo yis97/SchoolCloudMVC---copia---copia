@@ -19,6 +19,10 @@ namespace SchoolCloudMVC.DAO
         //constructor
         public  ConexionDAO()
         {
+            //base de datos myasp
+            //this.con = new SqlConnection("Data Source = SQL5030.site4now.net; Initial Catalog = DB_A35772_SCBD; User Id = DB_A35772_SCBD_admin; Password = mexico10; ");
+
+
             con = new SqlConnection("server=LAPTOP-NT04IKD6\\SQLEXPRESS ; database=SchoolCloud ; integrated security = true;");
             //con = new SqlConnection("workstation id=SchoolCloudDataBase.mssql.somee.com;packet size=4096;user id=TICS160914033_SQLLogin_1;pwd=obabqu91sa;data source=SchoolCloudDataBase.mssql.somee.com;persist security info=False;initial catalog=SchoolCloudDataBase");
             //sirve para establecer las consultas e instrucciones SQL que se ejecutarán en el servidor
