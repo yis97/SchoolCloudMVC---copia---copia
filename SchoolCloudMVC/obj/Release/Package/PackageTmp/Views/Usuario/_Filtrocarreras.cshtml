@@ -1,0 +1,23 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_Filtrocarreras";
+
+}
+
+@foreach (DataRow row in Model.Rows)
+{
+<li>
+    <div class="media">
+        <div class="media-left">
+            <a href="#" class="news_img">
+                <img alt="img" src="~/Picture/ImagenesCarrera/@row["FotoCarreras"]" class="media-object">
+            </a>
+        </div>
+        <div class="media-body">
+            <a href="#">@row["Nombre"]</a>
+            <span class="feed_date">@row["tipogrado"]</span>
+        </div>
+    </div>
+</li>
+}

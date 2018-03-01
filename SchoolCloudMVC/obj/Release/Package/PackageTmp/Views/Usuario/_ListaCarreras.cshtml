@@ -1,0 +1,27 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_ListaCarreras";
+
+}
+
+
+    <table class="table table-striped course_table ">
+        <thead>
+            <tr>
+                <th>Materias</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (DataRow row in Model.Rows)
+            {
+                <tr>
+                    <td>@row["Materias"]</td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+

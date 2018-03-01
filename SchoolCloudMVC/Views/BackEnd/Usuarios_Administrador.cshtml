@@ -1,0 +1,357 @@
+﻿@using SchoolCloudMVC.BO
+@model BackendBO
+@{
+    ViewBag.Title = "Usuarios_Administrador";
+    Layout = "~/Views/Shared/MasterPageBE.cshtml";
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3><span class="fa fa-user"></span> Administradores de Universidades</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+       
+                @using (Html.BeginForm("AgregarUniversidadAccesoBac", "BackEnd", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.IDusuario)
+                    @Html.HiddenFor(x => x.IDuniAcceso)
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Derechos reservados 2018<small>SchoolCloud</small></h2>
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                                    <div class="profile_img form-group">
+                                        <div id="crop-avatar">
+                                            <!-- Current avatar -->
+                                            <img class="img-responsive avatar-view" id="imgprw" src="~/Picture/ImagenesUsuario/default.png">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group ">
+                                        <span class="btn btn-primary btn-file col-lg-12 col-sm-12 col-md-12 ">
+                                            Subir imagen
+                                            @Html.TextBoxFor(x => x.FotoUsuario, new { @type = "File", @onchange = "imagepreview(this)", @accept = "image/png, image/jpeg, image/gif", @name = "input-file-preview" })
+                                        </span>
+                                    </div>
+                                        @*<a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>*@
+                                        <br />
+                                        <!-- start skills -->
+                                        <!-- end of skills -->
+</div>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                    <div class="profile_title form-group">
+                                        <div class="col-md-6">
+                                            <h2>Datos del Usuario</h2>
+                                        </div>
+
+                                    </div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Nombre del Usuario<span class="required"></span>
+                                    </label>
+                                    <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                        @Html.TextBoxFor(x => x.NombreA, new { @id = "NombreA", @class = "form-control col-md-7 col-xs-12" })
+                                    </div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Apellido del Usuario<span class="required"></span>
+                                    </label>
+                                    <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                        @Html.TextBoxFor(x => x.ApellidoA, new { @class = "form-control col-md-7 col-xs-12", @required = "required" })
+                                    </div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Correo Electrónico<span class="required"></span>
+                                    </label>
+                                    <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                        @Html.TextBoxFor(x => x.CorreoA, new { @class = "form-control col-md-7 col-xs-12", @required = "required" })
+                                    </div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Contraseña<span class="required"></span>
+                                    </label>
+                                    <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                        @Html.TextBoxFor(x => x.contra, new { @id = "contra", @class = "form-control col-md-7 col-xs-12", @required = "required" })
+                                    </div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Pais <span class="required"></span>
+                                    </label>
+                                    <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                        <div id="Pais">
+
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Estado <span class="required"></span>
+                                    </label>
+                                    <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                        <div id="Estados">
+
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Ciudad o Municipio <span class="required"></span>
+                                    </label>
+                                    <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                        <div id="Ciudad">
+
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Asignar Universidad <span class="required"></span>
+                                    </label>
+                                    <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                        <div id="Universidad">
+                                        </div>
+                                    </div>
+                                    <!--Final del Formulario del usuario-->
+
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                            <input type="submit" id="guardar" class="btn btn-success" value="Guardar" />
+                                            <input type="submit" id="actualizar" class="btn btn-primary" value="Actualizar" />
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                </div>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <div class="profile_title form-group">
+                                        <div class="col-md-6">
+                                            <h2>Administradores de universidades</h2>
+                                        </div>
+
+                                    </div>
+                                    <div class="x_content">
+                                        <p class="text-muted font-13 m-b-30">
+
+                                        </p>
+                                        <div id="datatable_filter" class="dataTables_filter">
+                                            <label>
+                                                Buscar:
+                                                <input type="search" id="system-search" class="form-control input-sm" placeholder="Buscar" aria-controls="datatable">
+                                            </label>
+                                        </div>
+                                        <div id="TablaUsuariosAdmin">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                }
+       
+
+        </div>
+
+    </div>
+</div>
+
+@*<script>
+    $(document).ready(function () {
+        $("#myForm").submit(function () {
+
+            var url= @Url.Action("AgregarUniversidadAccesoBac", "BackEnd");
+            var foto = $("#FotoUsuario").val();
+            var nombre=  $("#NombreA").val();
+            var apellido= $("#ApellidoA").val();
+            var correo= $("#CorreoA").val();
+     
+            var id=   $("#ID").val();
+            var iduser=  $("#IDusuario").val();
+            var contra=  $("#contra").val();
+            var idacceso=  $("#IDuniAcceso").val();
+            var data = {nombre:nombre, apellido:apellido, correo:correo, foto:foto, id:id, iduser:iduser, contra:contra, idacceso:idacceso};
+            $.post(url, data).done(function (data){
+                alert('guardado')
+            }
+            )
+        });
+    });
+  
+</script>*@
+<script>
+        $(document).ready(function () {
+            var activeSystemClass = $('.list-group-item.active');
+
+            //something is entered in search form
+            $('#system-search').keyup(function () {
+                var that = this;
+                // affect all table rows on in systems table
+                var tableBody = $('.table-striped tbody');
+                var tableRowsClass = $('.table-striped tbody tr');
+                $('.search-sf').remove();
+                tableRowsClass.each(function (i, val) {
+
+                    //Lower text for case insensitive
+                    var rowText = $(val).text().toLowerCase();
+                    var inputText = $(that).val().toLowerCase();
+                    if (inputText != '') {
+                        $('.search-query-sf').remove();
+                        tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Buscando Usuario: "'
+                            + $(that).val()
+                            + '"</strong></td></tr>');
+                    }
+                    else {
+                        $('.search-query-sf').remove();
+                    }
+
+                    if (rowText.indexOf(inputText) == -1) {
+                        //hide rows
+                        tableRowsClass.eq(i).hide();
+
+                    }
+                    else {
+                        $('.search-sf').remove();
+                        tableRowsClass.eq(i).show();
+                    }
+                });
+                //all tr elements are hidden
+                if (tableRowsClass.children(':visible').length == 0) {
+                    tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+                }
+            });
+        });
+</script>
+<script type="text/javascript">
+    (function () {//Función anónima autoejecutable
+        $("#Pais").load('/VistasParciales/_ListaPaises');
+        $("#Estados").load('/VistasParciales/_ListaEstados');
+        $("#Ciudad").load('/VistasParciales/_ListaCiudad');
+             $("#Universidad").load('/VistasParciales/_ListaUniversidades');
+             $("#TablaUsuariosAdmin").load('/VistasParciales/_TablaUsuariosAdmin');
+             document.getElementById('actualizar').disabled = true;
+         }());
+
+         $("#hola").click(function () {
+         
+             $("#NombreA").attr("required", "true");
+         });
+
+         function jsFunction(value) {
+
+             $("#Estados").load('/VistasParciales/_ListaEstados/' + value);
+             $("#Ciudad").load('/VistasParciales/_ListaCiudad');
+             if (value == 'Seleccionar un pais') {
+                 $("#Estados").load('/VistasParciales/_ListaEstados');
+
+             }
+         }
+         function jsFunctiona(value) {
+
+
+             $("#Ciudad").load('/VistasParciales/_ListaCiudad/' + value);
+
+
+         }
+</script>
+<script type="text/javascript">
+                function imagepreview(input) {
+                    var fildr = new FileReader();
+                    fildr.onload = function (e) {
+                        $('#imgprw').attr('src', e.target.result);
+                    }
+                    fildr.readAsDataURL(input.files[0]);
+                }
+</script>
+<style>
+    .btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+</style>
+@*<style>
+    /* layout.css Style */
+.upload-drop-zone {
+  height: 200px;
+  border-width: 2px;
+  margin-bottom: 20px;
+}
+
+/* skin.css Style*/
+.upload-drop-zone {
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  line-height: 200px;
+  text-align: center
+}
+.upload-drop-zone.drop {
+  color: #222;
+  border-color: #222;
+}
+
+
+
+.image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+</style>*@
+
+
+
+<style>
+    .modal-body {
+        height: 400px;
+        overflow-y: auto;
+    }
+</style>
+

@@ -1,0 +1,14 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "GaleriaParcial";
+    Layout = "~/Views/Shared/PaginaMaestra.cshtml";
+}
+
+@foreach (DataRow row in Model.Rows)
+{
+    <a href="~/Picture/GaleriaUniversidad/@row["Foto"]" title="@row["Descripcion"]">
+        <img class="gallery_img" src="~/Picture/GaleriaUniversidad/@row["Foto"]" alt="img" />
+        <span class="view_btn">Ver</span>
+    </a>
+}

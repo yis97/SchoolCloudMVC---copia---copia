@@ -1,0 +1,83 @@
+﻿
+@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_TablaUsuariosAdmin";
+}
+<table id="ListaUsuariosAdmin" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Imagen</th>
+            <th>Nombre de la Universidad</th>
+            <th>Administrador</th>
+            <th>Fecha de Registro</th>
+            <th>Foto</th>
+            <th>Acciones</th>
+           
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (DataRow row in Model.Rows)
+        {
+            <tr>
+              
+                <td> @row["idUsurio"]</td>
+                <td><span><img width="100" height="70" src="@Url.Action("ConvertirImagenUniversidad", "BackEnd", new { id = row["idUniversidad"] })" /></span></td>
+                <td>@row["Universidad"]</td>
+                <td>@row["Nombre"]</td>
+                <td>@row["FechaRegistro"]</td>
+                <th><img width="100" height="70" src="@Url.Action("ConvertirImagen", "BackEnd", new { id = row["idUsurio"] })" /></th>
+              
+            
+                <td>
+                    <a class="btn btn-info btn-xs" id="editarr" onclick="llena_datosa('@row["Nombre"]','@row["Apellidos"]', '@row["Correo"]','@row["idUniversidad"]','@row["idUsurio"]', '@row["ID"]' )" data-dismiss="modal"><i class="fa fa-pencil"></i> Editar </a>
+                    <a onclick="elimina('@row["idUsurio"]')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+<script>
+    function llena_datosa(nombre,Apellidos, correo,  iduni, iduser, idacceso) {
+
+        $("#NombreA").val(nombre);
+        $("#ApellidoA").val(Apellidos);
+        $("#CorreoA").val(correo);
+        $("#ID").val(iduni);
+        $("#IDusuario").val(iduser);
+        $("#contra").val('*******');
+        $("#IDuniAcceso").val(idacceso);
+        document.getElementById("imgprw").src ="/BackEnd/ConvertirImagen/"+iduser ;
+        document.getElementById("contra").disabled = true;
+        document.getElementById('actualizar').disabled = false;
+        document.getElementById('guardar').disabled = true;
+    }
+
+
+    function elimina(id)
+    {
+        var respuesta= confirm('¿Estás Seguro de Eliminar este Usuario?')
+        if (respuesta == true) {
+            var url = "@Url.Action("EliminarAdministrador", "BackEnd")";
+            var data ={id: id};
+            $.post(url, data).done(function (data) {
+               
+                if(data.ok){
+                    $("#TablaUsuariosAdmin").load('/VistasParciales/_TablaUsuariosAdmin');
+                    alert('Usuario Eliminado');
+                    $("#NombreA").val(null);
+                    $("#ApellidoA").val(null);
+                    $("#CorreoA").val(null);
+                    $("#ID").val(null);
+                    $("#IDusuario").val(null);
+                    $("#contra").val(null);
+                    $("#IDuniAcceso").val(null);
+                }
+            });
+        }
+}
+</script>

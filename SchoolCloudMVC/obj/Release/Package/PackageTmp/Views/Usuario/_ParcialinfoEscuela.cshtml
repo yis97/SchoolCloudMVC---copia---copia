@@ -1,0 +1,163 @@
+﻿@using SchoolCloudMVC.BO
+@model UsuarioBO
+@{
+    ViewBag.Title = "_ParcialinfoEscuela";
+
+}
+<section>
+    <br />
+    <br />
+    <br />
+    <img src="../img/header.png" />
+</section>
+
+<section id="courseArchive">
+    <div class="container">
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="courseArchive_content">
+                <!-- start blog archive  -->
+                <div class="row">
+                    <!-- start single blog -->
+                    <div class="col-lg-12 col-12 col-sm-12">
+                        <div class="single_blog">
+                            <!-- start events slider -->
+
+                            <div class="events_slider_area">
+                                <div class="events_slider">
+                                    <div> <img src="~/Picture/GaleriaUniversidad/@(Model.IDuni > 0 ? "" + Model.FotoUni : "" )" width="749" height="423" /></div>
+                                </div>
+                            </div>
+                            <!-- End events slider -->
+                            <h2 class="blog_title"><a href="blog-single.html">@(Model.IDuni > 0 ? Model.NombreUni : "" )  </a></h2>
+                            <div class="blog_commentbox">
+
+                                <p><i class="fa fa-clock-o"></i><asp:Label ID="Fechalbl" runat="server" Text="Label"></asp:Label></p>
+                                <p><i class="fa fa-map-marker"></i><asp:Label ID="Ubicacionlbl" runat="server" Text="Label"></asp:Label> </p>
+                            </div>
+                            <p> @(Model.IDuni > 0 ? "" + Model.DescripcionUni : "")</p>
+
+
+                            <div class="form-group">
+                                <div id="@(Model.IDuni>0? ""+Model.IDuni:"")" style="width:100%;height:300px;">
+                                    <input id="Latitudtxt" value="@(Model.IDuni>0?""+Model.LatitudUni:"") " />
+                                    <input id="Longitudtxt" value="@(Model.IDuni>0?""+Model.LongitudUni:"")" />
+
+                                </div>
+                            </div>
+
+
+                            @(Model.IDuni > 0 ? "" + Model.Visitasuni : "")
+
+
+
+                        </div>
+                        <!-- single blog nex & prev button -->
+                        <div class="single_blog_prevnext">
+                            <a class="prev_post wow fadeInLeft" href="#"><i class="fa fa-angle-left"></i>Galeria</a>
+                            <a class="next_post wow fadeInRight" href="#">Next Event<i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- End single blog -->
+                </div>
+                <!-- end blog archive  -->
+                <!-- start related post -->
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                        <div class="related_post">
+                            <h2>Comentarios</h2>
+
+                            <div class="panel-body courseArchive_sidebar">
+
+                                <div class="single_sidebar">
+                                    <asp:listview ID="ListViewMensajes" runat="server">
+                                        <ItemTemplate>
+                                            <ul class="chat">
+                                                <li class="left clearfix">
+                                                    <span class="chat-img pull-left">
+                                                        <asp:image ID="Foto" runat="server" Width="50" Height="50" class="img-circle" ImageUrl='<%# "~/Imagenes/usuarios/" + Eval("Foto") %>'></asp:image>
+                                                    </span>
+                                                    <div class="chat-body clearfix">
+                                                        <div class="header">
+                                                            <strong class="primary-font"><asp:Label ID="Label1" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label></strong> <small class="pull-right text-muted">
+                                                                <span class="glyphicon glyphicon-time"></span>Hace 12 Minutos
+                                                            </small>
+                                                        </div>
+                                                        <p>
+                                                            <asp:Label runat="server" ID="mensajelbl" Text='<%# Eval("Mensaje") %>'></asp:Label>
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </ItemTemplate>
+                                    </asp:listview>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- start related post -->
+            </div>
+        </div>
+
+        <!-- End course content -->
+        <!-- start course archive sidebar -->
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="courseArchive_sidebar">
+                <!-- start single sidebar -->
+                <div id="informacion">
+
+                </div>
+                <!-- End single sidebar -->
+                <!-- start single sidebar -->
+
+                <idv id=gradin>
+
+
+                </idv>
+
+                <!-- End single sidebar -->
+                <!-- start single sidebar -->
+                <div class="single_sidebar">
+                    <h2>Conocer más  <span class="fa fa-angle-double-right"></span></h2>
+                    <ul class="tags_nav">
+                        <li><a href="~/GUI/GaleriaUniversidad/@(Model.IDuni>0?""+Model.IDuni:"")"><i class="fa fa-image"></i>Galería</a></li>
+
+                    </ul>
+                </div>
+                <!-- End single sidebar -->
+                <!-- start single sidebar -->
+                @*<div class="single_sidebar">
+                        <h2>Sponsor Add <span class="fa fa-angle-double-right"></span></h2>
+                        <a class="side_add" href="#"><img src="img/side-add.jpg" alt="img"></a>
+                    </div>*@
+                <!-- End single sidebar -->
+            </div>
+        </div>
+        <!-- start course archive sidebar -->
+    </div>
+    </div>
+</section>
+<script>
+        $('#@(Model.IDuni>0? ""+Model.IDuni:"")').locationpicker({
+            radius: 0,
+            location: {
+                latitude: $('#Latitudtxt').val(),
+                     longitude: $('#Longitudtxt').val(),
+            },
+            inputBinding: {
+                    latitudeInput: $('#Latitudtxt'),
+                    longitudeInput: $('#Longitudtxt'),
+                    locationNameInput: $('#Ubicaciontxt')
+
+
+            },
+            enableAutocomplete:true
+
+        })
+
+
+</script>

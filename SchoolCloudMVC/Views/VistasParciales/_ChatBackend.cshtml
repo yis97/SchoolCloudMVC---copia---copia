@@ -1,0 +1,25 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_ChatBackend";
+
+}
+@foreach (DataRow row in Model.Rows)
+{
+    <div class="row msg_container base_receive">
+        <div class="col-md-2 col-xs-2 avatar">
+            <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
+        </div>
+        <div class="col-md-10 col-xs-10">
+            <div class="messages msg_receive">
+                <p>
+                  @row["Mensaje"]
+                </p>
+                <time datetime="2009-11-13T20:00">@row["NombreUsuarioEnvia"]</time>
+            </div>
+        </div>
+    </div>
+
+}
+
+

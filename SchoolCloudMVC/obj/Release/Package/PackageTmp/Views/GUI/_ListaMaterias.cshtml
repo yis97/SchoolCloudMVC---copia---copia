@@ -1,0 +1,26 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_ListaMaterias";
+
+}
+
+<table class="table table-striped course_table ">
+    <thead>
+        <tr>
+            <th>Ciclo Escolar</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DataRow row in Model.Rows)
+        {
+            <tr>
+                <td><a onclick="llena_datos('@row["IDCiclo"]')">@row["GradoEscolar"]</a></td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+

@@ -1,0 +1,50 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_ParcialEscuelas";
+
+}
+<style>
+    .texto {
+        width: 347px;
+        height: 200px;
+    }
+</style>
+<script>
+
+    $('.texto').dotdotdot();
+
+</script>
+@Scripts.Render("~/js/wow.min.js")
+@Scripts.Render("~/scss/jquery.dotdotdot.js")
+@foreach (DataRow row in Model.Rows)
+{
+    <div class="col-lg-6 col-6 col-sm-6">
+        <div class="single_blog_archive wow fadeInUp ">
+            <div class="blogimg_container">
+                <a href="#" class="blog_img">
+
+                    <img src="~/Picture/GaleriaUniversidad/@row["Foto"]" style="width:360px;height:203px;" />
+                </a>
+            </div>
+            <h2 class="blog_title"><a href="blog-single.html"> @row["nombre"] </a></h2>
+
+            <div class="blog_commentbox">
+                <p><i class="fa fa-user"></i><Label></Label> </p>
+                <p><i class="fa fa-calendar"></i><asp:Label ID="Label2" Text='<%# Eval("FechaRegistro") %>'></asp:Label> </p>
+                <a href="#">
+                    <i class="fa fa-eye"></i>@row["Visitas"]
+
+                </a>
+            </div>
+            <div class="texto">
+                <p class="blog_summary ">@row["descripcion"] </p>
+            </div>
+            <a class="blog_readmore" href="~/Usuario/InformacionEscuela/@row["ID"]">
+                Leer más
+            </a>
+        </div>
+    </div>
+
+}
+

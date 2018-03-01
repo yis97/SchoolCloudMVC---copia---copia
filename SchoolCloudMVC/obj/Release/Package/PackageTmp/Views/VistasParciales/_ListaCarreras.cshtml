@@ -1,0 +1,14 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_ListaCarreras";
+
+}
+@foreach (DataRow row in Model.Rows)
+{
+<li>
+    <a href="~/UniAdmin/InfoCarrera_UniAdmin/@row["IDCarreraUni"]">@row["Nombre"]</a>
+</li>
+
+
+}

@@ -1,0 +1,184 @@
+﻿@using SchoolCloudMVC.BO
+@model UniversidadAccseso
+@{
+    ViewBag.Title = "Galeria_UniAdmin";
+    Layout = "~/Views/Shared/MasterPageUni.cshtml";
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Galería<small> </small> </h3>
+            </div>
+
+        </div>
+        @*<div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Subir Imagen<small>SchoolCloud</small></h2>
+         
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                            <div class="profile_img">
+                                <div id="crop-avatar">
+                                    <!-- Imagen -->
+                                   
+
+                                    <img class="img-responsive avatar-view" id="imgprw">
+
+
+
+
+
+                                </div>
+                            </div>
+                            <h3 id="NameCarrera"> </h3>
+                        <input type="file"class="btn btn-success" />
+                            @*<a class="btn btn-success" type="file" ><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>----arroba
+                      
+                            <!-- start skills -->
+                   
+
+                            <!-- end of skills -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Media Gallery <small> gallery design</small></h2>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#getCroppedCanvasModal">
+                                           
+                                        Subir Imagen
+                                         
+                                        </button>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li>
+                                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        <a href="#">Settings 1</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Settings 2</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="row">
+                                            <p>Media gallery design emelents</p>
+                                            <div id="galeria"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="getCroppedCanvasTitle">Cropped</h4>
+            </div>*@
+            <div class="modal-body">
+                <div class="clearfix"></div>
+               @using (Html.BeginForm("GuardarFotoUniversidad", "UniAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+               {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.idUniversidad)
+                 <div class="row">
+                    @*<div class="col-md-7 col-sm-7 col-xs-12">*@
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Subir Imagen<small>SchoolCloud</small></h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                <div class="x_content">
+                                    <div class="col-md-12  profile_left">
+                                        <div class="profile_img">
+                                            <div id="crop-avatar">
+                                                <!-- Imagen -->
+                                                <img class="img-responsive avatar-view" style="width:100%" id="imgprw">
+                                            </div>
+                                        </div>
+                                        @*<h3 id="NameCarrera"> </h3>*@
+                                        @Html.TextBoxFor(x => x.FotoUniversiad, htmlAttributes: new { @type = "file", @onchange = "imagepreview(this)", @class = "btn btn-success" })
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @*<a class="btn btn-success" type="file" ><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>*@
+
+                                        <!-- start skills -->
+                                        <!-- end of skills -->
+                                    </div>
+
+                                </div>
+                                </div>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                               
+                                <div class="form-group">
+                                    @Html.TextAreaFor(x => x.Descripcion, htmlAttributes: new { @class = "form-control", @required = "required" })
+                                </div>
+
+                                <input class="btn btn-success" type="submit" value="Subir Imagen" />
+                            </div>
+                            </div>
+                    @*</div>*@
+                    @*<div class="col-md-5 col-sm-5 col-xs-12">
+                        <div class="form-group">
+                        @Html.TextAreaFor(x => x.Descripcion, htmlAttributes: new { @class = "form-control", @required = "required" })
+                        </div>
+                   
+                        <input class="btn btn-success"  type="submit" value="Subir Imagen"/>
+                    </div>*@
+               </div>
+               }
+            </div>
+            @*<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.png">Download</a>
+            </div>*@
+        </div>
+    </div>
+</div><!-- /.modal -->
+                <!-- /page content -->
+                <script type="text/javascript">
+                    (function () {//Función anónima autoejecutable
+                        $("#galeria").load('/VistasParciales/_GaleriaUniversidadUniAdmin/@(Model.idUsuario> 0 ? "" + Model.idUniversidad : "" )');
+                    }());
+                </script>
+<script type="text/javascript">
+        function abre_modal() {
+            $("#").modal('show');
+        }
+</script>
+<script type="text/javascript">
+                function imagepreview(input) {
+                    var fildr = new FileReader();
+                    fildr.onload = function (e) {
+                        $('#imgprw').attr('src', e.target.result);
+                    }
+                    fildr.readAsDataURL(input.files[0]);
+                }
+</script>

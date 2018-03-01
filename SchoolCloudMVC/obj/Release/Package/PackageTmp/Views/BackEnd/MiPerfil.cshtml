@@ -1,0 +1,152 @@
+﻿@using SchoolCloudMVC.BO
+@model BackendBO
+@{
+    ViewBag.Title = "MiPerfil";
+    Layout = "~/Views/Shared/MasterPageBE.cshtml";
+}
+
+@*<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Mi Perfil @(Model.IDusuario > 0 ? "" + Model.NombreUsaurio : "" )</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Mis Datos<small> SchoolCloud</small></h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>*@
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Hola, @(Model.IDusuario > 0 ? "" + Model.NombreUsaurio : "" )</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            @using (Html.BeginForm("RegistrarUniversidad", "BackEnd", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.IDusuario)
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Mi Perfil<small> SchoolCloud ®</small></h2>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                                <div class="profile_img">
+                                    <div id="crop-avatar">
+                                        <!-- Current avatar -->
+                                        <img class="img-responsive avatar-view" id="imgprw" src="~/Picture/ImagenesUsuario/ @(Model.IDusuario > 0 ? "" + Model.Fotouniversidad : "" )">
+                                    </div>
+                                </div>
+
+                                @*<h3 >Universidades </h3>*@
+                                @*<ul class="list-unstyled user_data">
+                                        <li>
+                                            <i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
+                                        </li>
+                                        <li class="m-top-xs">
+                                            <i class="fa fa-external-link user-profile-icon"></i>
+                                            <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
+                                        </li>
+                                    </ul>*@
+                                <h4>Cargar Fotografía</h4>
+                                @Html.TextBoxFor(x => x.Fotouniversidad, new { @type = "File", @class = "btn btn-success form-group col-md-12 col-sm-12 col-xs-12", @onchange = "imagepreview(this)" })
+                                @*<a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>*@
+                                <br />
+                                <!-- start skills -->
+                                <!-- end of skills -->
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                <div class="profile_title form-group">
+                                    <div class="col-md-6">
+                                        <h2>Agregar universidad</h2>
+                                    </div>
+
+                                </div>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    Nombre completo<span class="required"></span>
+                                </label>
+                                <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                    @Html.TextBoxFor(x => x.NombreUsaurio, new { @class = "form-control col-md-7 col-xs-12", @required = "required", @id = "Materia" })
+                                </div>
+
+                                <!-- Formulario de Materias-Carreras-Universidades... -->
+                                <!-- Formulario de Materias-Carreras-Universidades... -->
+
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    Apellidos <span class="required"></span>
+                                </label>
+                                <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                    @Html.TextBoxFor(x => x.Apellidos, new { @class = "form-control col-md-7 col-xs-12", @required = "required", @id = "Materia" })
+                                </div>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    Correo Eléctronico <span class="required"></span>
+                                </label>
+                                <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                    @Html.TextBoxFor(x => x.Correo, new { @id = "Turno", @class = "form-control col-md-7 col-xs-12", @required = "required" })
+                                </div>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                   Contraseña<span class="required"></span>
+                                </label>
+                                <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                    @Html.TextBoxFor(x => x.Contraseña, new { @id = "Turno", @class = "form-control col-md-7 col-xs-12", @required = "required", @type = "password" })
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <input type="submit" class="btn btn-success" value="Actualizar mis datos" />
+                                    </div>
+                                </div>
+
+
+
+
+
+                              
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

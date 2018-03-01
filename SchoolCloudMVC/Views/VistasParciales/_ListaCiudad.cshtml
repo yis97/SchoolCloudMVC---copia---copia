@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "_ListaCiudad";
+}
+@using SchoolCloudMVC.Models;
+
+@model Modelo_Pais
+@Html.DropDownList("IDCiudad", Model.ciudad, "Seleccionar una ciudad", new { @class = "form-control col-md-7 col-xs-12" })

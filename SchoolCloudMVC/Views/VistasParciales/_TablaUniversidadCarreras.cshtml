@@ -1,0 +1,46 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_TablaUniversidadCarreras";
+}
+<table style="width:100%" class="table">
+    <thead>
+        <tr>
+            <th style="text-align:left;">ID</th>
+            <th style="width:150px;text-align:left;">Nombre</th>
+            <th style="width:150px;text-align:left;">Universidad</th>
+            <th style="width:150px;text-align:left;">Fecha de Registro</th>
+            <th style="width:150px;text-align:left;">Estatus</th>
+            <th style="width:150px;text-align:left;">Grado</th>
+            <th style="width:150px;text-align:left;">Foto Carrera</th>
+            <th>Acciones</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (DataRow row in Model.Rows)
+        {
+            <tr id="fila_@row["ID"]">
+                <td>@row["ID"]</td>
+                <td style="width:150px;text-align:left;">@row["Nombre"]</td>
+                <td style="width:150px;text-align:left;">@row["Universidad"]</td>
+                <td style="width:150px;text-align:left;">@row["FechaRegistro"]</td>
+                <td style="width:150px;text-align:left;">@row["Estatus"]</td>
+                <td style="width:150px;text-align:left;">@row["tipogrado"]</td>
+              <td ><span><img width="100" height="70" src="~/Picture/ImagenesCarrera/@row["FotoCarreras"]" /></span></td>
+                
+
+                <td style="width:350px;">
+                    <a title="Editar" id="edita" onclick="llena_datos(@row["ID"],'@row["tipogrado"]')" class="btn btn-primary" style="cursor:pointer">Editar</a>
+
+
+                    <a title="Eliminar" onclick="elimina(@row["ID"])" class="btn btn-danger" style="cursor:pointer">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    
+    </script>

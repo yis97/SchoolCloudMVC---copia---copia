@@ -1,0 +1,43 @@
+﻿
+@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_TablaDirecciones";
+}
+<table id="ListaUsuariosAdmin" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Escuela</th>
+            <th>Dirección</th>
+            <th>Lugar</th>
+            <th>Pais</th>
+            <th>Estado</th>
+            <th>Ciudad/Municipio</th>
+            <th><span class="fa fa-cog"></span></th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (DataRow row in Model.Rows)
+        {
+            <tr>
+
+                <td> @row["Escuela"]</td>
+                <td>@row["Dirección"]</td>
+                <td>@row["Lugar"]</td>
+                <td>@row["Pais"]</td>
+                <td>@row["Estado"]</td>
+                <td>@row["Ciudad"]</td>
+
+
+                <td>
+                    <a class="btn btn-info btn-xs" id="editarr" onclick="llena_datosa('@row["IDPais"]','@row["IDEstado"]', '@row["IDCiudad"]','@row["IDUniversidad"]','@row["Dirección"]', '@row["Lugar"]' )" data-dismiss="modal"><i class="fa fa-pencil"></i> Editar </a>
+                    <a onclick="elimina('@row["ID"]')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>

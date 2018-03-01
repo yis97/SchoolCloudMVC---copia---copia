@@ -1,0 +1,95 @@
+﻿@using SchoolCloudMVC.BO
+@model UniversidadAccseso
+
+@{
+    ViewBag.Title = "NombreCarrera";
+
+}
+
+
+@using (Html.BeginForm("GuardarFoto", "VistasParciales", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.idUniversidad)
+    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+        <div class="profile_img">
+            <div id="crop-avatar">
+                <img id="imgprw" width="200"  class="img-responsive avatar-view" height="300" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-12  profile_left">
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                    Nombre de la Carrera <span class="required"></span>
+                </label>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                    @Html.TextBoxFor(x => x.NombreUni, htmlAttributes: new { @class = "form-control ", @required = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                    Descripción de la carrera <span class="required"></span>
+                </label>
+                <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                    @Html.TextAreaFor(x => x.Descripcion, new { @id = "Descripcion", @class = "form-control col-md-7 col-xs-12", @required = "required" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                    Nivel de estudios <span class="required"></span>
+                </label>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div id="tipo">
+
+                    </div>
+                </div>
+            </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+         
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                    Foto <span class="required"></span>
+                </label>
+            <div class="form-group">
+                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                    @*@Html.TextBoxFor(x => x.FotoCarrera, htmlAttributes: new {@type ="file", @onchange= "imagepreview(this)", @name="file", ID="file", @required = "required" })*@
+                    @Html.TextBoxFor(x => x.FotoCarrera, htmlAttributes: new { @type = "File", @onchange = "imagepreview(this)" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <br />
+
+
+
+            </div>
+            </div>
+
+            <div class="ln_solid"></div>
+            <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                    <button type="submit" class="btn btn-success">Enviar</button>
+                </div>
+            </div>
+            }
+            <script type="text/javascript">
+                (function () {//Función anónima autoejecutable
+
+                    $("#tipo").load('/VistasParciales/TipoGradoEstudios');
+                }());
+
+            </script>
+            <script type="text/javascript">
+                function imagepreview(input) {
+                    var fildr = new FileReader();
+                    fildr.onload = function (e) {
+                        $('#imgprw').attr('src', e.target.result);
+                    }
+                    fildr.readAsDataURL(input.files[0]);
+                }
+            </script>

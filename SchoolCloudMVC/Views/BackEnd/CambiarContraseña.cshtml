@@ -1,0 +1,84 @@
+﻿@using SchoolCloudMVC.BO
+@model BackendBO
+@{
+
+    ViewBag.Title = "CambiarContraseña";
+    Layout = "~/Views/Shared/MasterPageBE.cshtml";
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Cambiar Contraseña</h3>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Catologo de Universidades<small>SchoolCloud</small></h2>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            @Html.HiddenFor(x => x.IDusuario)
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                              
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Nueva Contraseña<span class="required"></span>
+                                    </label>
+                        
+                                <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                    <input id="contra" class = "form-control col-md-7 col-xs-12" type="password" value="" required="required" />
+                                 
+                                </div>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    Confirmar contraseña<span class="required"></span>
+                                </label>
+                                <div class="form-group col-md-9 col-sm-9 col-xs-12">
+                                    @Html.TextBoxFor(x => x.contrasenia, new {@id= "contrasenia", @type ="password", @class = "form-control col-md-7 col-xs-12", @require="required"})
+                                  
+                                </div>
+                                <input type="submit" id="cambiar"  class="btn btn-primary" value="Cambiar contraseña" />
+                              
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+<script>
+    
+    $('#cambiar').click(function () {
+
+        var url = "@Url.Action("PostCambiarContraseña", "BackEnd")";
+
+        var IDusuario = $("#IDusuario").val();
+        var contrasenia = $("#contrasenia").val();
+        var contra = $("#contra").val();
+     
+
+
+       
+        var data = { IDusuario: IDusuario, contrasenia: contrasenia };
+
+        $.post(url, data).done(function (data) {
+
+            if (data.ok) {
+                alert('Contraseña Cambiada');
+        $("#contrasenia").val(null);
+         $("#contra").val(null);
+
+            }
+
+        });
+
+
+    });
+    
+</script>

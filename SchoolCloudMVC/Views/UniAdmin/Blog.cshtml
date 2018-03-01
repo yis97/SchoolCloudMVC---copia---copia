@@ -1,0 +1,187 @@
+﻿@using SchoolCloudMVC.BO
+@model UniversidadAccseso
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/MasterPageUni.cshtml";
+}
+  <!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>User Profile</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+                    <input class="btn btn-dark" type="button" value="Publicar" data-toggle="modal" data-target="#myModal" />
+                    </div>
+                </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>User Report <small>Activity report</small></h2>
+                   
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-1 col-sm-1 col-xs-12 profile_left">
+                    
+                          
+                        </div>
+                        <div class="col-md-10 col-sm-10 col-xs-12">
+                            <div class="profile_title form-group">
+                                <div class="col-md-6">
+                                    <h2>Publicaciones</h2>
+                                </div>
+                                <div class="col-md-4">
+
+                                </div>
+                                <div class="col-md-2">
+                                @*<input class="btn btn-dark" type="button" value="Publicar" />*@
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <h4><strong><a href="#">Title of the post</a></strong></h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 "  >
+                                            <a class="thumbnail">
+                                                <img src="http://placehold.it/260x180" alt="" width="260" height="180">
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, ea mei omittam explicari conclusionemque, ad nobis propriae quaerendum sea.
+                                            </p>
+                                            <p><a class="btn btn-dark" href="#">Read more</a></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p></p>
+                                            <p>
+                                                <span class="fa fa-user"></span> by <a href="#">John</a>
+                                                | <i class="fa fa-calendar"></i> Sept 16th, 2012
+                                                | <i class="fa fa-adn"></i> <a href="#">3 Comments</a>
+                                                | <i class="fa fa-university"></i> <a href="#">39 Shares</a>
+                                                | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a>
+                                                <a href="#"><span class="label label-info">Bootstrap</span></a>
+                                                <a href="#"><span class="label label-info">UI</span></a>
+                                                <a href="#"><span class="label label-info">growth</span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                           
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-12 profile_left">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-search"></i> Buscar Universidades</h4>
+            </div>
+            <div class="modal-body">
+
+              <div class="row">
+                  <div class="x_content">
+@using (Html.BeginForm("agregarpublicacion", "UniAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.idUniversidad)
+                      <div class="col-md-4 col-sm-4 col-xs-12 profile_left">
+                          <div class="profile_img col-lg-12">
+                              <div id="crop-avatar" style="width:100%;height:100%">
+                                  <!-- Current avatar -->
+                                  <img class="img-responsive avatar-view" id="imgprw" src="">
+
+                              </div>
+                          </div>
+
+                        
+                          <span class="btn btn-primary btn-file col-lg-6 col-sm-6 col-md-6 "> subir imagen
+                              @Html.TextBoxFor(x => x.fotopublicacion, new { @class = "btn btn-success", @Type = "file", @onchange = "imagepreview(this)" })
+                          </span>
+                      </div>
+                      <div class="col-md-8 col-sm-8 col-xs-12">
+                          <div class="profile_title form-group">
+                              <div class="col-md-6">
+                                  <h2>Publicar</h2>
+                              </div>
+
+                          </div>
+                          <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                              @Html.TextBoxFor(x => x.NombrePublicacion, new { @class = "form-control ", @placeholder = "Nombre de la publicación" })
+                          </div>
+                         <div id="area" class="form-group col-md-12 col-sm-12 col-xs-12"></div>
+                          <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                              @Html.TextAreaFor(x => x.DescripcionPublicacion, new { @class = "form-control ", @rows = "8" })
+                          </div>
+                          <input type="submit" class="btn btn-dark" value="Publicar"/>
+                      </div>
+}
+                  </div>
+
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("imgprw").src = "/Picture/ImagenesUsuario/default.png";
+    function imagepreview(input) {
+        var fildr = new FileReader();
+        fildr.onload = function (e) {
+            $('#imgprw').attr('src', e.target.result);
+        }
+        fildr.readAsDataURL(input.files[0]);
+    }
+    $("#area").load("/VistasParciales/_TipoArea");
+
+
+</script>
+<style>
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+</style>

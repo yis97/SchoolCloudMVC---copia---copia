@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "TipoGradoEstudios";
+}
+@using SchoolCloudMVC.Models;
+
+@model Modelo_TipoGrado
+@Html.DropDownList("idgrado", Model.TipoGrado, "Seleccionar nivel de Grado",  htmlAttributes: new { @class = "form-control col-md-7 col-xs-12"})

@@ -1,0 +1,273 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SchoolCloud</title>
+@Scripts.Render("https://code.jquery.com/jquery-1.10.2.min.js")
+@Scripts.Render("https://maps.google.com/maps/api/js?sensor=false&libraries=places&key= AIzaSyCcU_GYCA-lo5L2oEZQLeS5bdPxz9mX9jc ")
+    @Scripts.Render("~/scss/locationpicker.jquery.js")
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/icon" href="img/wpf-favicon.png" />
+    @Styles.Render("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
+    @Styles.Render("http://cdn.bootcss.com/animate.css/3.5.1/animate.min.css")
+
+    <!-- CSS
+    ================================================== -->
+    <!-- Bootstrap css file-->
+    @Styles.Render("~/css/bootstrap.min.css")
+    <!-- Font awesome css file-->
+  @Styles.Render("~/css/font-awesome.min.css")
+    <!-- Superslide css file-->
+@Styles.Render("~/css/superslides.css")
+    <!-- Slick slider css file -->
+@Styles.Render("~/css/slick.css")
+
+    <!-- Circle counter cdn css file -->
+  @Styles.Render("https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/css/jquery.circliful.css")
+    <!-- smooth animate css file -->
+   @Styles.Render("~/css/animate.css")
+    <!-- preloader -->
+    @Styles.Render("~/css/queryLoader.css")
+
+  
+    <!-- gallery slider css -->
+ @Styles.Render("~/css/jquery.tosrus.all.css")
+    <!-- Default Theme css file -->
+  @Styles.Render("~/css/themes/default-theme.css")
+    <!-- Main structure css file -->
+  @Styles.Render("~/style.css")
+    @Styles.Render("~scss/hojas.css")
+</head>
+<body>
+    <header id="header">
+        <!-- BEGIN MENU -->
+        <div class="menu_area">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- LOGO -->
+                        <!-- TEXT BASED LOGO -->
+                        <a class="navbar-brand" href="~/GUI/Index">
+                            School<span>Cloud</span>
+                        </a>
+                        <!-- IMG BASED LOGO  -->
+                        <!-- <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="logo"></a>  -->
+
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
+                            <li><a href="~/GUI/Index">Inicio</a></li>
+                            <li><a href="~/GUI/Quienesomos">Quiénes somos</a></li>
+                            
+                          
+                            @*<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Universidades<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Publicas</a></li>
+                                    <li><a href="#">Privadas</a></li>
+                            
+                                </ul>
+                            </li>*@
+                            <li><a href="~/GUI/Login">Iniciar Sesión</a></li>
+                            <li><a data-toggle="modal" href="#" data-target="#myModal" >Búsqueda Avanzada</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Ubicaciones</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="~/GUI/MapaUniversidades"><span class="fa  fa-map"></span> Mapa universidades</a></li>
+                                  
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+             
+                </div>
+            </nav>
+        </div>
+        <!-- END MENU -->
+    </header>
+
+    @RenderBody()
+
+    <footer id="footer">
+        <!-- Start footer top area -->
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-ld-6  col-md-6 col-sm-6">
+
+                        <div class="single_footer_widget">
+                            <h3>Contactanos</h3>
+                            <div class="form-group">
+                                <input id="Nombretxt" class="form-control" placeholder="Nombre Completo" type="text" />
+                            </div>
+                            <div class="form-group">
+                                <input id="CORREOtxt" class="form-control" placeholder="Correo" ValidateRequestMode="Inherit" TextMode="Email" type="text" />
+                                </div>
+                            <div class="form-group">
+                                <input id="Text1" class="form-control" MaxLength="300" TextMode="MultiLine" height="100" placeholder="Mensaje" type="text" />
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <input id="Button1" class="btn btn-info" type="button" required="required" contextmenu="Enviar" value="Enviar" />
+
+                                </div>
+                            </div>
+
+
+                    </div>
+                    @*<%--   <div class="col-ld-3  col-md-3 col-sm-3">
+                        <div class="single_footer_widget">
+                            <h3>Community</h3>
+                            <ul class="footer_widget_nav">
+                                <li><a href="#">Our Tutors</a></li>
+                                <li><a href="#">Our Students</a></li>
+                                <li><a href="#">Our Team</a></li>
+                                <li><a href="#">Forum</a></li>
+                                <li><a href="#">News &amp; Media</a></li>
+                            </ul>
+                        </div>
+                    </div>--%>*@
+                    <div class="col-ld-6  col-md-6 col-sm-6">
+                        <div class="single_footer_widget">
+                            <h3>Dirección de la Empresa</h3>
+                            <div class="single_footer_widget">
+                                <p><asp:Label ID="LblDireccion" runat="server" Text="Label"></asp:Label></p>
+                                <p>Teléfono:&nbsp;99915959</p>
+                                <p>Email:&nbsp;roldán-leones-yuc@hotmail.com</p>
+                                <p>Ubicación:&nbsp;Calle 61 </p>
+                                <div class="form-group">
+                                    <div id="ModalMapa" style="width:100%;height:150px;">
+                                        <input id="Latitud1txt" type="text" value="20.938297181414647" />
+                                        <input id="Longitud1txt" type="text" value="-89.61501516379462" />
+                                        <input id="Ubicacion1txt" type="text" />
+                                    </div>
+                                </div>
+                                <ul class="footer_social">
+                                    <li><a data-toggle="tooltip" data-placement="top" title="Facebook" class="soc_tooltip" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a data-toggle="tooltip" data-placement="top" title="Twitter" class="soc_tooltip" href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a data-toggle="tooltip" data-placement="top" title="Youtube" class="soc_tooltip" href="#"><i class="fa fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+               @*<div class="col-ld-2  col-md-2 col-sm-2">
+                        <div class="single_footer_widget">
+                            <h3>Social Links</h3>
+                            <ul class="footer_social">
+                                <li><a data-toggle="tooltip" data-placement="top" title="Facebook" class="soc_tooltip" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a data-toggle="tooltip" data-placement="top" title="Twitter" class="soc_tooltip" href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a data-toggle="tooltip" data-placement="top" title="Youtube" class="soc_tooltip" href="#"><i class="fa fa-youtube"></i></a></li>
+                            </ul>
+
+
+
+                        </div>
+                    </div>*@
+                </div>
+
+            </div>
+        </div>
+      <div id="Busqueda">
+
+      </div>
+        <!-- End footer top area -->
+        <!-- Start footer bottom area -->
+        <div class="footer_bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="footer_bootomLeft">
+                            <p>Derechos Reservados © 2017</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="footer_bootomRight">
+                            <p>Desarrolladores: Roldán, Jaime, Yisac<a href="http://wpfreeware.com/" rel="nofollow">www.RoldanJared.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+    (function () {//Función anónima autoejecutable
+    
+        $("#Busqueda").load('/GUI/_BuscarAvanzada');
+    }());
+        </script>
+        <script>
+        $('#ModalMapa').locationpicker({
+            radius: 0,
+            location: {
+                latitude: $('#Latitud1txt').val(),
+                     longitude: $('#Longitud1txt').val(),
+            },
+            inputBinding: {
+                    latitudeInput: $('#Latitud1txt'),
+                    longitudeInput: $('#Longitud1txt'),
+                    locationNameInput: $('#Ubicacion1txt')
+
+
+            },
+            enableAutocomplete:true
+
+        })
+
+
+        </script>
+        
+        <!-- End footer bottom area -->
+    </footer>
+   
+    @Scripts.Render("https://code.jquery.com/jquery-3.2.1.js")
+    <!-- initialize jQuery Library -->
+    @Scripts.Render("https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+    <!-- Preloader js file -->
+ <!--   Scripts.Render("~/js/queryloader2.min.js")--> <!--cargar pagina-->
+    <!-- For smooth animatin  -->
+        @Scripts.Render("~/js/wow.min.js")
+        @Scripts.Render("~/scss/jquery.dotdotdot.js")
+
+    <!-- Bootstrap js -->
+    @Scripts.Render("~/js/bootstrap.min.js")
+    <script>
+
+    $('.texto').dotdotdot();
+
+    </script>
+    <!-- slick slider -->
+    @Scripts.Render("~/js/slick.min.js")
+
+    <!-- superslides slider -->
+    @Scripts.Render("~/js/jquery.easing.1.3.js")
+@Scripts.Render("~/js/jquery.animate-enhanced.min.js")
+@Scripts.Render("~/js/jquery.superslides.min.js")
+@Scripts.Render("https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js")
+    <!-- for circle counter -->
+   
+    <!-- Gallery slider -->
+    @Scripts.Render("~/js/jquery.tosrus.min.all.js")
+
+
+    <!-- Custom js-->
+    @Scripts.Render("~/js/custom.js")
+   
+
+</body>
+</html>

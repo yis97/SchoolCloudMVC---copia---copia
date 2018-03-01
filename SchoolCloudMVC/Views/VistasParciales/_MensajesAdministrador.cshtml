@@ -1,0 +1,24 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_MensajesAdministrador";
+
+}
+
+@foreach (DataRow row in Model.Rows)
+{
+    <li>
+        <a href="#" onclick="llena_datos_mensaje('@row["IDusuarioEnvia"]')">
+            <span class="image">
+                <img src="~/img/gallery/foto1.jpg" alt="img">
+            </span>
+            <span>
+                <span>@row["NombreUsuarioEnvia"]</span>
+                <span class="time">3 mins ago</span>
+            </span>
+            <span class="message">
+               hola
+            </span>
+        </a>
+    </li>
+}

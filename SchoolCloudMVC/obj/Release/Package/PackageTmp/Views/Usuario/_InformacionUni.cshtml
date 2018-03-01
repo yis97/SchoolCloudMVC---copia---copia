@@ -1,0 +1,73 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_InformacionUni";
+
+}
+<div class="single_sidebar">
+    <h2><span class="fa fa-phone"></span> Télefono</h2>
+    <!--Contenedor delñ deltelefono-->
+    <ul class="news_tab">
+      
+            <!--Contenedor delñ deltelefono-->
+            @foreach (DataRow row in Model.Rows)
+            {
+                <li>
+                    <div class="media">
+                       
+                        <div class="media-body">
+                            <h2><span class="fa fa-phone"></span>   @row["NumeroTelefono"]</h2>
+                          
+                        </div>
+                    </div>
+                </li>
+            }
+
+    </ul>
+</div>
+<div class="single_sidebar">
+    <h2><span class="fa fa-map-marker"></span> Dirección</h2>
+    <!--Contenedor delñ deltelefono-->
+    <ul class="news_tab">
+
+        <!--Contenedor delñ deltelefono-->
+        @foreach (DataRow row in Model.Rows)
+            {
+            <li>
+                <div class="media">
+              
+                    <div class="media-body">
+                        <h2> @row["Dirección"]</h2>  
+                    
+                    </div>
+                </div>
+            </li>
+        }
+
+    </ul>
+</div>
+<div class="single_sidebar">
+    <h2><span class="fa fa-eye"></span> Visitas</h2>
+    <!--Contenedor delñ deltelefono-->
+    <ul class="news_tab">
+
+        <!--Contenedor delñ deltelefono-->
+        @foreach (DataRow row in Model.Rows)
+            {
+            <li>
+                <div class="media">
+                    @*<div class="media-left">
+                        <a href="#" class="news_img">
+                            <img alt="img" src="img/news.jpg" class="media-object">
+                        </a>
+                    </div>*@
+                    <div class="media-body">
+                        <h2><span class="fa fa-eye"></span> @row["Visitas"] visitas</h2>
+                        @*<span class="feed_date">27.02.15</span>*@
+                    </div>
+                </div>
+            </li>
+        }
+
+    </ul>
+</div>

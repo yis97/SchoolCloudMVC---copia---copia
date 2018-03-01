@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "TipoUsuario";
+}
+
+@using SchoolCloudMVC.Models;
+
+@model Modelo_TipoUsuario
+@Html.DropDownList("ID", Model.TipoUsuario, "Seleccionar Tipo Usuario",  new {@class= "form-control col-md-7 col-xs-12" })
+
+

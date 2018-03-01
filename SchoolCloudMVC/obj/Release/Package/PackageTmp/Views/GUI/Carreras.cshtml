@@ -1,0 +1,136 @@
+﻿@using SchoolCloudMVC.BO
+@model UniversidadBO
+@{
+    ViewBag.Title = "Carreras";
+    Layout = "~/Views/Shared/PaginaMaestra.cshtml";
+}
+@Styles.Render("~/scss/hojas.css")
+<style>
+    .texto {
+        width: 600px;
+        height: 90px;
+    }
+</style>
+<img src="../img/header.png" />
+<br />
+<br />
+<br />
+<br />
+
+<section id="courseArchive">
+    <div class="container">
+        <div class="row">
+            
+            <!-- start course content -->
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="courseArchive_sidebar">
+                    <div class="singlecourse_ferimg">
+                <img src="~/Picture/GaleriaUniversidad/@(Model.ID > 0 ? "" + Model.Foto : "")" alt="img">
+            </div>
+                    @*<div class="row">*@
+                    <div class="single_sidebar">
+
+                    <h2>@(Model.ID > 0 ? "" + Model.Nombre: "") <span class="fa fa-angle-double-right"></span></h2>
+
+                        <ul class="news_tab" id="listacarreras">
+
+                            <!-- start single course -->
+                            @*@foreach (DataRow row in Model.Rows)
+                            {
+                                <li>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#" class="news_img">
+                                                <img src="~/Picture/ImagenesCarrera/@row["FotoCarreras"]" />
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h2><a href="~/GUI/UniversidadCarreraMateria/@row["IDCarrera"]"> @row["Nombre"] </a></h2>
+                                            <div class="texto">
+                                                <p>@row["Descripcion"]</p>
+                                            </div>
+                                            <span class="feed_date">  </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                @*<div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="single_course wow fadeInUp">
+                                        <div class="singCourse_imgarea">
+                                            <img src="~/img/slider/LogoUTM (1).png" height="240" />
+                                            <div class="mask">
+                                                <a href="~/GUI/UniversidadCarreraMateria/@row["IDCarrera"]" class="course_more">Ver Carrera</a>
+                                            </div>
+                                        </div>
+                                        <div class="singCourse_content ">
+                                            <h2 class="singCourse_title"><a href="course-single.html">@row["Nombre"]</a></h2>
+
+                                        </div>
+                                        <div class="singCourse_author">
+                                            <img src="~/img/gallery/@row["Foto"]" alt="img">
+                                            <p>@row["Universidad"]</p>
+                                        </div>
+                                    </div>
+                                </div> UN ARROBA
+                            }*@
+                        </ul>
+                    </div>
+                </div>
+                    <!-- start previous & next button -->
+                    @*<div class="single_blog_prevnext">
+                        <a href="#" class="prev_post wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"><i class="fa fa-angle-left"></i>Previous</a>
+                        <a href="#" class="next_post wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;">Next<i class="fa fa-angle-right"></i></a>
+                    </div>*@
+                </div>
+           
+            <!-- End course content -->
+            <!-- start course archive sidebar -->
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="courseArchive_sidebar">
+                    <!-- start single sidebar -->
+                    <div class="single_sidebar">
+                        <h2>Escuelas que te pueden interesar <span class="fa fa-angle-double-right"></span></h2>
+                        <ul class="news_tab" id="UniPopulares">
+                          
+                         
+                           
+                        </ul>
+                    </div>
+                    <!-- End single sidebar -->
+                    <!-- start single sidebar -->
+                    @*<div class="single_sidebar">
+                        <h2>Quick Links <span class="fa fa-angle-double-right"></span></h2>
+                        <ul>
+                            <li><a href="#">Link 1</a></li>
+                            <li><a href="#">Link 2</a></li>
+                            <li><a href="#">Link 3</a></li>
+                            <li><a href="#">Link 4</a></li>
+                            <li><a href="#">Link 5</a></li>
+                        </ul>
+                    </div>*@
+                    <!-- End single sidebar -->
+                    <!-- start single sidebar -->
+                    @*<div class="single_sidebar">
+                        <h2>Sponsor Add <span class="fa fa-angle-double-right"></span></h2>
+                        <a class="side_add" href="#"><img src="img/side-add.jpg" alt="img"></a>
+                    </div>*@
+                    <!-- End single sidebar -->
+                </div>
+            </div>
+            <!-- start course archive sidebar -->
+            </div>
+        </div>
+  
+
+</section>
+<script type="text/javascript">
+
+        $("#UniPopulares").load('/GUI/_UniPopulares/');
+
+
+    (function ()
+    {
+        $("#listacarreras").load('/GUI/_ListasCarrerasUni/@(Model.ID>0? ""+Model.IDGRADO:"")');
+      
+        $("#UniPopulares").load('/GUI/_UniPopulares/');
+         }());
+</script>

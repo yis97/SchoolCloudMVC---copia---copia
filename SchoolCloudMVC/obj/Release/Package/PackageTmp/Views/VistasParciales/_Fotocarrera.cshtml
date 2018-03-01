@@ -1,0 +1,10 @@
+﻿@using SchoolCloudMVC.BO
+@model UniversidadCarreraBO
+@{
+    ViewBag.Title = "_Fotocarrera";
+}
+
+
+
+
+<img class="img-responsive avatar-view" src="~/Picture/ImagenesCarrera/@(Model.ID> 0 ? "" + Model.foto : "" )" >

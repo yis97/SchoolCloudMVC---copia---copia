@@ -1,0 +1,25 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_UniPopulares";
+  
+}
+
+
+        @foreach (DataRow row in Model.Rows)
+        {
+            <li>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#" class="news_img">
+                            <img src="~/Picture/GaleriaUniversidad/@row["Foto"] " />
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <a href="#"> @row["nombre"] </a>
+                        <span class="feed_date">Escuela @row["tipo"] </span>
+                    </div>
+                </div>
+            </li>
+        }
+

@@ -1,0 +1,44 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_ListasCarrerasUni";
+  
+}
+@foreach (DataRow row in Model.Rows)
+{
+    <li>
+        <div class="media">
+            <div class="media-left">
+                <a href="#" class="news_img">
+                    <img src="~/Picture/ImagenesCarrera/@row["FotoCarreras"]" />
+                </a>
+            </div>
+            <div class="media-body">
+                <h2><a href="~/GUI/UniversidadCarreraMateria/@row["IDCarrera"]"> @row["Nombre"] </a></h2>
+                <div class="texto">
+                    <p>@row["Descripcion"]</p>
+                </div>
+                <span class="feed_date">  </span>
+            </div>
+        </div>
+    </li>
+                                @*<div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="single_course wow fadeInUp">
+                                            <div class="singCourse_imgarea">
+                                                <img src="~/img/slider/LogoUTM (1).png" height="240" />
+                                                <div class="mask">
+                                                    <a href="~/GUI/UniversidadCarreraMateria/@row["IDCarrera"]" class="course_more">Ver Carrera</a>
+                                                </div>
+                                            </div>
+                                            <div class="singCourse_content ">
+                                                <h2 class="singCourse_title"><a href="course-single.html">@row["Nombre"]</a></h2>
+
+                                            </div>
+                                            <div class="singCourse_author">
+                                                <img src="~/img/gallery/@row["Foto"]" alt="img">
+                                                <p>@row["Universidad"]</p>
+                                            </div>
+                                        </div>
+                                    </div>*@
+}
+

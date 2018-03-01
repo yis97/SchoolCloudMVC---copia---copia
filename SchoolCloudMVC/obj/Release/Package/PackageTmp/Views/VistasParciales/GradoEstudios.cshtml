@@ -1,0 +1,17 @@
+﻿@using System.Data;
+@model DataTable
+
+
+<div class="single_sidebar">
+    <h2>Grado de Estudios<span class="fa fa-angle-double-right"></span></h2>
+    <ul>
+        @foreach (DataRow row in Model.Rows)
+        {
+           
+            
+          <li><h2><a href="~/GUI/Carreras/@row["IDgrado"]">@row["tipogrado"] </a></h2></li>
+            
+        }
+
+    </ul>
+</div>

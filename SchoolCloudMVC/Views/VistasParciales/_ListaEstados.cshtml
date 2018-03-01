@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "_ListaEstados";
+}
+@using SchoolCloudMVC.Models;
+
+@model Modelo_Pais
+@Html.DropDownList("IDEstado", Model.Estado, "Seleccionar un Estado", new { @class = "form-control col-md-9 col-xs-12", @onmousedown = "this.value='';", @onchange = "jsFunctiona(this.value);" })

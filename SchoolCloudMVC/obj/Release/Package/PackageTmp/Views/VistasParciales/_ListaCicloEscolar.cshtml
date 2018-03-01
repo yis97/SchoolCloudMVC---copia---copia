@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "_ListaCicloEscolar";
+}
+@using SchoolCloudMVC.Models;
+
+@model ModeloTipoCicloEscolar
+@Html.DropDownList("IDciclo", Model.TipoCilcoEscolar, "Seleccionar Ciclo Escolar", new { @class = "form-control col-md-7 col-xs-12" })
+
+
+
+

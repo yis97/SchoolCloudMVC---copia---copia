@@ -1,0 +1,112 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_TablaUniversidades";
+}
+
+<table id="ListaUniversidades" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+
+            <th>ID</th>
+            <th>Imagen</th>
+            <th >Nombre</th>
+            <th>Tipo</th>
+            <th>Estatus</th>
+            <th>Fecha de Registro</th>
+            <th>Número de Visitas</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (DataRow row in Model.Rows)
+        {
+            <tr>
+
+                <td> @row["ID"]</td>
+                <td><span><img width="100" height="70" src="~/Picture/GaleriaUniversidad/@row["Foto"]" /></span></td>
+                <td  >@row["nombre"]</td>
+                <td>@row["tipo"]</td>
+                <td>@row["Estatus"]</td>
+                <td>@row["FechaRegistro"]</td>
+                <td>@row["Visitas"]</td>
+                <td>
+                    <a class="btn btn-info btn-xs" id="editarr"  onclick="llena_datosa('@row["ID"]', '@row["nombre"]','@row["idtipo"]','@row["descripcion"]','@row["NumeroTelefono"]','@row["idDireccion"]', '@row["idTelefono"]' , '@row["direccion"]', '@row["Latitud"]', '@row["Longitud"]', '@row["Foto"]')" data-dismiss="modal"><i class="fa fa-pencil"></i> Editar </a>
+                    <a  onclick="elimina('@row["ID"]')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+<script>
+    function elimina(id) {
+        $.ajax({
+            url: 'ELIMINARUNIVERSIDAD/',
+            data: { id: id }
+        }).done(function () {
+            $("#TablaUniversidades").load('/VistasParciales/_TablaUniversidades');
+        });
+    }
+    function llena_datosa(id, nombre, tipo, descripcion, telefono, idDireccion, idTelefono, Direccion, lat, lon, Fotouniversidad) {
+        $('#IDUniversidad').val(id);
+        $('#Nombreuniversidad').val(nombre);
+        $('#idtipouni').val(tipo);
+        $('#DescripcionUnivesidad').val(descripcion);
+        $('#Telefono').val(telefono);
+
+        $('#IDdireccion').val(idDireccion);
+        $('#IDtel').val(idTelefono);
+        $('#Direccion').val(Direccion);
+        $('#Fotouniversidad').val(Fotouniversidad);
+        document.getElementById("imgprw").src = "/Picture/GaleriaUniversidad/"+Fotouniversidad+"";
+        $.ajax({
+        }).done(function () {
+
+            $('#Latituf').val(lat);
+            $('#Longitud').val(lon);
+            $('#TablaMapa').post();
+        });
+        document.getElementById("actu").disabled = false;
+        document.getElementById("gua").disabled = true;
+
+        document.getElementById('AgregarDireccion').style.visibility = 'visible';
+
+    }
+
+
+    // *********  Este el metodo de Actualizar Universidad :) **********
+    $('#act').click(function () {
+
+        var url = "@Url.Action("EDITARuniversidad", "BackEnd"@*, new { enctype = "multipart/form-data" }*@)";
+        var IDuniversidad = $('#IDUniversidad').val();
+        //var Fotouniversidad = document.getElementById("Fotouniversidad");
+        var Fotouniversidad = $('#Fotouniversidad').val();
+        //var Fotouniversidad =  $('#Fotouniversidad').val();
+        var Nombreuniversidad = $('#Nombreuniversidad').val();
+        var idtipouni = $('#idtipouni').val();
+        var DescripcionUnivesidad = $('#DescripcionUnivesidad').val();
+        var data = { IDuniversidad: IDuniversidad, Fotouniversidad: Fotouniversidad, Nombreuniversidad: Nombreuniversidad, idtipouni: idtipouni, DescripcionUnivesidad: DescripcionUnivesidad };
+        $.post(url, data).done(function (data) {
+
+         
+                alert('Datos Actualizados');
+            
+            $('#IDUniversidad').val(null);
+            $('#Nombreuniversidad').val(null);
+            var DescripcionUnivesidad = $('#DescripcionUnivesidad').val(null);
+        });
+           
+    }
+    );
+    // ************** Aqui ACABA EL METODO  DE ACTUALIZAR **************
+
+    //$('#editarr').click(function () {
+
+    //    document.getElementById("act").disabled = false;
+    //    document.getElementById("gua").disabled = true;
+    //}
+    //);
+</script>

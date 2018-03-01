@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "_ListaUniversidades";
+
+}
+@using SchoolCloudMVC.Models;
+
+@model Modelo_ListaUniversidad
+@Html.DropDownList("ID", Model.NombreUniversidad, "Seleccionar Universidad", new { @class = "form-control col-md-7 col-xs-12" })
+

@@ -1,0 +1,32 @@
+﻿@using System.Data
+@model DataTable
+
+  
+@{
+    ViewBag.Title = "GaleriaUniversidad";
+    Layout = "~/Views/Shared/PaginaMaestra.cshtml";
+}
+
+<section id="gallery">
+    <img src="../img/header.png" />
+    <br />
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div id="gallerySLide" class="gallery_area">
+                    @foreach (DataRow row in Model.Rows)
+                    {
+                    <a href="~/Picture/GaleriaUniversidad/@row["Foto"]" title="@row["Descripción"]">
+                        <img class="gallery_img" src="~/Picture/GaleriaUniversidad/@row["Foto"]" alt="img" />
+                        @*<span class="view_btn">Ver</span>*@
+                        
+                    </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

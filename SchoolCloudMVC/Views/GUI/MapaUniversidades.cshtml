@@ -1,0 +1,90 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "MapaUniversidades";
+    Layout = "~/Views/Shared/PaginaMaestra.cshtml";
+}
+
+<style>
+    #map_canvas {
+    width: 500px;
+    height: 400px;
+    margin: 2em auto;
+}
+</style>
+@Styles.Render("~/scss/hojas.css")
+
+
+<img src="../img/header.png" />
+<br />
+<br />
+<br />
+
+<div id="map_canvas"style="width:1000px;height:500px" ></div>
+
+   
+<script >
+
+    var hola =
+    [$("#nombre").val(),
+$("#lat").val(),
+$("#long").val()]
+    var markers =
+      [
+          ['Universidad Anahuac de Yucatán', 21.1108337, -89.61187230000002],
+    ['Universidad Mesoamericana de San Agustín', 20.976213, -89.62790210000003],
+    ['Universidad Autonoma de Yucatán', 20.96965, -89.62312800000001],
+       ['Universidad Tec Milenio de Yucatán', 21.0385936, -89.66131000000001],
+           ['Universidad Viscaya de las Americas', 21.004475, -89.63226800000001],
+
+               ['Universidad Tecnológico de Progreso ', 21.2784532, -89.65153909999998],
+    ['Universidad Republica de méxico', 20.9746241, -89.62887549999999],
+     ['Universidad UVM', 21.0533015, -89.6329187]
+
+
+
+
+
+    //[
+    //$("#nombre").val(),
+    //$("#lat").val(),
+    //$("#long").val()
+    //]
+    ];
+
+    markers.forEach(function (element) {
+        console.log(element);
+    });
+
+    function initializeMaps() {
+        var myOptions = {
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeControl: false
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        var infowindow = new google.maps.InfoWindow();
+        var marker, i;
+        var bounds = new google.maps.LatLngBounds();
+
+        for (i = 0; i < markers.length; i++) {
+            var pos = new google.maps.LatLng(markers[i][1], markers[i][2]);
+            bounds.extend(pos);
+            marker = new google.maps.Marker({
+                position: pos,
+                map: map
+            });
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
+                    infowindow.setContent(markers[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+        }
+        map.fitBounds(bounds);
+    }
+
+    initializeMaps();
+
+
+
+</script>

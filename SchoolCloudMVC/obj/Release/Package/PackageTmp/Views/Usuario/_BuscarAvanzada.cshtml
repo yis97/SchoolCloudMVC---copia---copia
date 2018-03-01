@@ -1,0 +1,39 @@
+﻿@using SchoolCloudMVC.BO
+@model UniversidadBO
+@{
+    ViewBag.Title = "_BuscarAvanzada";
+
+}
+@using (Html.BeginForm("Buscar", "GUI", FormMethod.Post))
+{
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-search"></i> Busqueda Avanzada</h4>
+            </div>
+            <div class="modal-body">
+
+
+                @*<h2><i class="fa fa-search"></i> Buscar</h2>*@
+
+
+
+                <form action="" method="post">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control", @placeholder = "search..." })
+                    </div>
+                    <br />
+                   
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" value="sub" name="sub" class="btn btn-primary"><i class="fa fa-shearch"></i> Buscar</button>
+                @*<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+}

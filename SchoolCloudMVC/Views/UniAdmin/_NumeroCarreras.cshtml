@@ -1,0 +1,11 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewBag.Title = "_NumeroCarreras";
+
+}
+
+@foreach (DataRow row in Model.Rows)
+{
+<div class="count" >@row["NumeroDeCarreras"]</div>
+}
